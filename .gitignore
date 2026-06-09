@@ -6,6 +6,9 @@
 .pixi/
 !.pixi/config.toml
 
+# --- Local workspace files and Pebble SDK cache ---
+.local/
+
 # --- Pebble SDK / Waf Build System ---
 **/build/
 **/.lock-waf_*
