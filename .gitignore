@@ -1,0 +1,48 @@
+# --- Nix & direnv ---
+.direnv/
+.envrc.local
+
+# --- Pixi environments ---
+.pixi/
+!.pixi/config.toml
+
+# --- Pebble SDK / Waf Build System ---
+**/build/
+**/.lock-waf_*
+*.pbw
+*.bin
+
+# --- Node / npm (Pebble JS / PebbleKit JS) ---
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+.pytest_cache/
+.mypy_cache/
+
+# --- IDEs, Editors & OS Files ---
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*.swo
+*~
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

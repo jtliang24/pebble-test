@@ -1,0 +1,15 @@
+[workspace]
+name = "pebble-test"
+version = "0.1.0"
+channels = ["conda-forge"]
+platforms = ["linux-64", "osx-64", "osx-arm64"]
+
+[dependencies]
+python = ">=3.13,<3.14"
+# pebble-tool can be installed directly into the environment if available on PyPI,
+# or we can rely on pip/uv inside the pixi tasks to keep it pristine.
+pip = "*" 
+
+[tasks]
+# Post-install task to ensure pebble-tool is ready
+setup-pebble = "pip install pebble-tool"
