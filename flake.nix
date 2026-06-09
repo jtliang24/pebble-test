@@ -92,7 +92,7 @@
             # Ensure Moddable tools shebangs are patched for NixOS/FHS compatibility
             moddable_tools_dir="$XDG_DATA_HOME/pebble-sdk/SDKs/${pebble-sdk-version}/toolchain/moddable-tools"
             if [ -d "$moddable_tools_dir" ]; then
-              echo "Checking Moddable tools shebangs..."
+              # echo "Checking Moddable tools shebangs..."
               for f in "$moddable_tools_dir"/*; do
                 if [ -f "$f" ] && head -n 1 "$f" | grep -q "^#!/bin/bash"; then
                   echo "Patching shebang for $(basename "$f")..."
