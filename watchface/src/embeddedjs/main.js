@@ -19,7 +19,7 @@ function draw(event) {
     const now = event.date;
 
     render.begin();
-    render.fillRectange(black, 0, 0, render.width, render.height);
+    render.fillRectangle(black, 0, 0, render.width, render.height);
 
     const hours = String(now.getHours()).padStart(2, "0");
     const minutes = String(now.getMinutes()).padStart(2, "0");
