@@ -16,6 +16,7 @@
       system:
       let
         pkgs = import nixpkgs { system = system; };
+        pebble-sdk-version = "4.9.169";
 
         # Fundamental native packages needed for Pebble's QEMU emulator to bind to your OS graphic loop
         emulatorDeps =
@@ -30,7 +31,11 @@
             libpulseaudio
             bzip2
           ]
-          ++ pkgs.lib.optionals pkgs.stdenv.isLinux [ pkgs.sndio pkgs.udev pkgs.libcap ];
+          ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
+            pkgs.sndio
+            pkgs.udev
+            pkgs.libcap
+          ];
 
         qemu-pebble-wrapped =
           if pkgs.stdenv.isLinux then
@@ -57,6 +62,7 @@
             echo "===================================================="
             echo "▶ rePebble SDK Environment (Pixi + Nix Platform)"
             echo "▶ Pixi Version: $(pixi --version)"
+            echo "▶ Pebble SDK Version: ${pebble-sdk-version}"
             echo "===================================================="
 
             # Point XDG_DATA_HOME to the repository's .local/share directory
@@ -78,9 +84,9 @@
             fi
 
             # Automatically install the pinned Pebble SDK version if not already present
-            if [ ! -d "$XDG_DATA_HOME/pebble-sdk/SDKs/4.9.169" ]; then
-              echo "Installing Pebble SDK version 4.9.169..."
-              pebble sdk install 4.9.169
+            if [ ! -d "$XDG_DATA_HOME/pebble-sdk/SDKs/${pebble-sdk-version}" ]; then
+              echo "Installing Pebble SDK version ${pebble-sdk-version}..."
+              pebble sdk install ${pebble-sdk-version}
             fi
           '';
         };
