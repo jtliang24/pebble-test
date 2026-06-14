@@ -1,0 +1,49 @@
+If:
+  PathMatch: watchface-c/.*
+CompileFlags:
+  Add:
+    - "-std=c99"
+    - "-DRELEASE"
+    - "-DPBL_PLATFORM_BASALT"
+    - "-DPBL_COLOR"
+    - "-DPBL_RECT"
+    - "-DPBL_MICROPHONE"
+    - "-DPBL_SMARTSTRAP"
+    - "-DPBL_HEALTH"
+    - "-DPBL_COMPASS"
+    - "-DPBL_SMARTSTRAP_POWER"
+    - "-DPBL_DISPLAY_WIDTH=144"
+    - "-DPBL_DISPLAY_HEIGHT=168"
+    - "-DPBL_SDK_FROZEN"
+    - "-DPBL_SDK_3"
+    - "-D_TIME_H_"
+    - "-Dtime_t=long"
+    - "-I/home/jtliang/Projects/pebble-test/watchface-c/build/include"
+    - "-I/home/jtliang/Projects/pebble-test/watchface-c/build/basalt"
+    - "-I/home/jtliang/Projects/pebble-test/.local/.pebble-sdk/SDKs/current/sdk-core/pebble/basalt/include"
+
+---
+
+If:
+  PathMatch: watchface/.*
+CompileFlags:
+  Add:
+    - "-std=c99"
+    - "-DRELEASE"
+    - "-DPBL_PLATFORM_EMERY"
+    - "-DPBL_COLOR"
+    - "-DPBL_RECT"
+    - "-DPBL_MICROPHONE"
+    - "-DPBL_SMARTSTRAP"
+    - "-DPBL_HEALTH"
+    - "-DPBL_COMPASS"
+    - "-DPBL_SMARTSTRAP_POWER"
+    - "-DPBL_DISPLAY_WIDTH=200"
+    - "-DPBL_DISPLAY_HEIGHT=228"
+    - "-DPBL_SDK_FROZEN"
+    - "-DPBL_SDK_3"
+    - "-D_TIME_H_"
+    - "-Dtime_t=long"
+    - "-I/home/jtliang/Projects/pebble-test/watchface/build/include"
+    - "-I/home/jtliang/Projects/pebble-test/watchface/build/emery"
+    - "-I/home/jtliang/Projects/pebble-test/.local/.pebble-sdk/SDKs/current/sdk-core/pebble/emery/include"
