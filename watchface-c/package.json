@@ -26,7 +26,20 @@
       "dummy"
     ],
     "resources": {
-      "media": []
+      "media": [
+        {
+          "type": "font",
+          "name": "FONT_JERSEY_56",
+          "file": "fonts/Jersey10-Regular.ttf",
+          "compatibility": "2.7"
+        },
+        {
+          "type": "font",
+          "name": "FONT_JERSEY_24",
+          "file": "fonts/Jersey10-Regular.ttf",
+          "compatibility": "2.7"
+        }
+      ]
     }
   }
 }
