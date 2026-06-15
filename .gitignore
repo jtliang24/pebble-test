@@ -35,6 +35,7 @@ env/
 # --- IDEs, Editors & OS Files ---
 .vscode/
 .idea/
+.zed/settings.json
 *.suo
 *.ntvs*
 *.njsproj
