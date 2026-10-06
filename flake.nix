@@ -1,5 +1,5 @@
 {
-  description = "Pebble SDK Development Environment via Pixi";
+  description = "Pebble SDK Development Environment via pebble.nix";
 
   nixConfig = {
     extra-substituters = [ "https://pebble.cachix.org" ];
@@ -19,7 +19,8 @@
       flake-utils,
       pebble-nix,
     }:
-    flake-utils.lib.eachDefaultSystem (system:
+    flake-utils.lib.eachDefaultSystem (
+      system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
         pebble-wrapped = pkgs.writeShellScriptBin "pebble" ''
@@ -35,7 +36,7 @@
             export PATH="${pebble-wrapped}/bin:$PATH"
 
             # Automatically install the Pebble SDK version locally if not already present
-            sdk_version="4.9.169"
+            sdk_version="4.33.1"
             local_dir="$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.local"
             if [ ! -d "$local_dir/.pebble-sdk/SDKs/$sdk_version" ]; then
               echo "Installing Pebble SDK version $sdk_version locally..."
@@ -45,5 +46,6 @@
             echo "Entering Pebble.nix Developement Environment!"
           '';
         };
-      });
+      }
+    );
 }
