@@ -1,0 +1,41 @@
+{
+  "name": "standup-reminder",
+  "author": "MakeAwesomeHappen",
+  "version": "1.0.0",
+  "keywords": ["pebble-app"],
+  "private": true,
+  "dependencies": {
+    "@rebble/clay": "^1.1.0"
+  },
+  "pebble": {
+    "displayName": "Standup Reminder",
+    "uuid": "2123b844-77fd-48cd-a03a-ad988e926d7e",
+    "sdkVersion": "3",
+    "enableMultiJS": true,
+    "targetPlatforms": [
+      "basalt",
+      "chalk",
+      "diorite",
+      "emery",
+      "flint",
+      "gabbro"
+    ],
+    "watchapp": {
+      "watchface": false
+    },
+    "capabilities": [
+      "health",
+      "configurable"
+    ],
+    "messageKeys": [
+      "INTERVAL_MINUTES",
+      "ACTIVITY_THRESHOLD",
+      "ENABLED",
+      "ACTIVE_START_HOUR",
+      "ACTIVE_END_HOUR"
+    ],
+    "resources": {
+      "media": []
+    }
+  }
+}
