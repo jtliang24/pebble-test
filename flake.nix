@@ -25,6 +25,10 @@
         pkgs = nixpkgs.legacyPackages.${system};
         pebble-wrapped = pkgs.writeShellScriptBin "pebble" ''
           export HOME="$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.local"
+          # Drop any LD_LIBRARY_PATH inherited from a Nix-wrapped parent (e.g. claude-code adds
+          # alsa-lib): libraries built against a newer glibc stop qemu-pebble from loading SDL3.
+          # pebble-tool's own wrapper prepends the paths it needs.
+          unset LD_LIBRARY_PATH
           exec ${pebble-nix.packages.${system}.pebble-tool}/bin/pebble "$@"
         '';
       in

@@ -35,7 +35,9 @@ From the repo root, `./build_and_install.sh [relative/file/path]` builds and ins
 
 There are no tests or linters; verification means building and running in the emulator.
 
-**Emulator gotcha:** the dev shell exports `LD_LIBRARY_PATH` pointing at an `alsa-lib` built for a newer glibc than `qemu-pebble`/SDL3, so emulator commands fail with `Failed loading SDL3 library` (even with `--vnc`, since audio uses SDL). Workaround: `direnv exec . env -u LD_LIBRARY_PATH pebble install --emulator emery` (same for `logs`, `screenshot`, `emu-*`, `send-app-message`). Each CLI connection resyncs the emulator clock to host time, so run `emu-set-time` *after* other commands.
+The flake's `pebble` wrapper unsets `LD_LIBRARY_PATH`. Nix-wrapped parents such as the `claude-code` package prepend `alsa-lib` built against a newer glibc, which leaves `qemu-pebble` failing with `Failed loading SDL3 library` (even with `--vnc`, since audio uses SDL). Keep that `unset` if you edit the wrapper.
+
+When testing in the emulator: each `pebble` CLI connection resyncs the emulator clock to host time, so run `emu-set-time` *after* other commands. Numeric message-key IDs for `send-app-message` are in `build/js/message_keys.json`.
 
 ## Editor / clangd
 
