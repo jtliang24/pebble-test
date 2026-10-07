@@ -44,10 +44,10 @@ standup-reminder/
   worker_src/c/standup_worker.c # background worker: event-driven timing + step evaluation + active hours
   src/pkjs/index.js             # wires up Clay
   src/pkjs/config.js            # Clay config page definition
-  src/common/keys.h             # shared persist keys + worker-message types + defaults + active-hours helpers
+  src/c/keys.h                  # shared persist keys + worker-message types + defaults + active-hours helpers
 ```
 
-Note: the stock `wscript` only globs `src/common/**/*.js` for the JS bundle; `keys.h` is a C header included by relative path (`#include "../../src/common/keys.h"` from `worker_src/c/`, `"../common/keys.h"` from `src/c/`). Check that both app and worker compile with it.
+Note: `keys.h` lives in `src/c/`, not `src/common/` — CloudPebble treats `src/common/` as shared JS and drops C headers there, so the build can't find them. The app includes it as `"keys.h"`, the worker by relative path (`#include "../../src/c/keys.h"`).
 
 ### `package.json` (`standup-reminder/package.json`)
 Base it on `watchface-c/package.json` with these changes:
@@ -60,7 +60,7 @@ Base it on `watchface-c/package.json` with these changes:
 - `targetPlatforms`: drop `aplite` (no health sensor); keep `basalt, chalk, diorite, emery, flint, gabbro`. `emery` is the emulator default.
 - Remove the `resources.media` font entries (none needed).
 
-### Shared keys & state (`src/common/keys.h`)
+### Shared keys & state (`src/c/keys.h`)
 - **Settings** (persisted by app from Clay, read by worker): `PKEY_INTERVAL_MIN` (default 30), `PKEY_ACTIVITY_THRESHOLD` (default 50, steps within the rolling window), `PKEY_ENABLED` (default true), `PKEY_ACTIVE_START_HOUR` (default 9), `PKEY_ACTIVE_END_HOUR` (default 18).
 - **Constant:** `ACTIVITY_WINDOW_SEC` = 120 (rolling window for movement detection; a tunable; using a ~2 min window avoids a single-minute test missing a steady slow walk). `REMINDER_AUTO_DISMISS_MS` = 30000. `REMIND_ACK_TIMEOUT_MS` = 1500.
 - **Worker-message types:**

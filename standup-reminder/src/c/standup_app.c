@@ -1,5 +1,5 @@
 #include <pebble.h>
-#include "../common/keys.h"
+#include "keys.h"
 
 #define STATUS_REFRESH_DELAY_MS 500
 

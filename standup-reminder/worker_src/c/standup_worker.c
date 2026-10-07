@@ -1,5 +1,5 @@
 #include <pebble_worker.h>
-#include "../../src/common/keys.h"
+#include "../../src/c/keys.h"
 
 #define MAX_SAMPLES 16
 
